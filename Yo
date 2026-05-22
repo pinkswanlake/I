@@ -1,4 +1,4 @@
-docker network create inception-net
+lab1r1s12% docker network create inception-net
 
 docker run -d --name mariadb-test \
   --network inception-net \
@@ -7,19 +7,9 @@ docker run -d --name mariadb-test \
   -e MYSQL_PASSWORD=wppassword123 \
   -e MYSQL_ROOT_PASSWORD=rootpassword123 \
   mariadb-test
-Wait 5 seconds for MariaDB to start, then run WordPress:
-bashsleep 5 && docker run -d --name wordpress-test \
-  --network inception-net \
-  -e MYSQL_DATABASE=wordpress \
-  -e MYSQL_USER=wpuser \
-  -e MYSQL_PASSWORD=wppassword123 \
-  -e DOMAIN_NAME=asmafrid.42.fr \
-  -e WP_ADMIN=admin \
-  -e WP_ADMIN_PASSWORD=adminpass123 \
-  -e WP_ADMIN_EMAIL=admin@asmafrid.42.fr \
-  -e WP_USER=user1 \
-  -e WP_USER_PASSWORD=userpass123 \
-  -e WP_USER_EMAIL=user1@asmafrid.42.fr \
-  wordpress-test
-Then check the logs:
-bashsleep 10 && docker logs wordpress-test
+07a2b78649d4d62f749daeb0b2c5774600628cb036bb37fd00693436e929951f
+Unable to find image 'mariadb-test:latest' locally
+docker: Error response from daemon: pull access denied for mariadb-test, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+lab1r1s12% 
