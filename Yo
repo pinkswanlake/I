@@ -1,9 +1,13 @@
-mkdir -p ~/inception/srcs/requirements/mariadb/conf
-mkdir -p ~/inception/srcs/requirements/mariadb/tools
-mkdir -p ~/inception/srcs/requirements/nginx/conf
-mkdir -p ~/inception/srcs/requirements/nginx/tools
-mkdir -p ~/inception/srcs/requirements/wordpress/conf
-mkdir -p ~/inception/srcs/requirements/wordpress/tools
-touch ~/inception/srcs/docker-compose.yml
-touch ~/inception/srcs/.env
-touch ~/inception/Makefile
+ DOMAIN_NAME=asmafrid.42.fr
+
+MYSQL_ROOT_PASSWORD=rootpassword123
+MYSQL_DATABASE=wordpress
+MYSQL_USER=wpuser
+MYSQL_PASSWORD=wppassword123
+
+WP_ADMIN=admin
+WP_ADMIN_PASSWORD=adminpass123
+WP_ADMIN_EMAIL=admin@asmafrid.42.fr
+WP_USER=user1
+WP_USER_PASSWORD=userpass123
+WP_USER_EMAIL=user1@asmafrid.42.fr
