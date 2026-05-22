@@ -1,17 +1,26 @@
-root@e42e8ebb5cd9:/# mysql -u wpuser -pwppassword123 wordpress
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 3
-Server version: 10.5.29-MariaDB-0+deb11u1 Debian 11
+FROM debian:bullseye
 
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+RUN apt-get update && apt-get install -y \
+    php7.4 \
+    php7.4-fpm \
+    php7.4-mysql \
+    php7.4-curl \
+    php7.4-gd \
+    php7.4-mbstring \
+    php7.4-xml \
+    php7.4-xmlrpc \
+    php7.4-zip \
+    wget \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
 
-MariaDB [wordpress]> SHOW DATABASES:
-    -> EXIT
-    -> exit
-    -> ^C
-Exit
-Exit
-    -> 
+COPY tools/init.sh /init.sh
+RUN chmod +x /init.sh
 
+EXPOSE 9000
+
+ENTRYPOINT ["/init.sh"]
