@@ -1,12 +1,13 @@
-lab1r1s12% docker run -d --name mariadb-test \
+docker run -d --name mariadb-test \
   --network inception-net \
   -e MYSQL_DATABASE=wordpress \
   -e MYSQL_USER=wpuser \
   -e MYSQL_PASSWORD=wppassword123 \
   -e MYSQL_ROOT_PASSWORD=rootpassword123 \
   mariadbtest
-13169dec7ebf75f45ebd342ea9b3b9efbd43846165f79b5f99fec9182981a60c
-lab1r1s12% sleep 5 && docker run -d --name wordpress-test \
+
+
+sleep 5 && docker run -d --name wordpress-test \
   --network inception-net \
   -e MYSQL_DATABASE=wordpress \
   -e MYSQL_USER=wpuser \
@@ -19,7 +20,3 @@ lab1r1s12% sleep 5 && docker run -d --name wordpress-test \
   -e WP_USER_PASSWORD=userpass123 \
   -e WP_USER_EMAIL=user1@asmafrid.42.fr \
   wordpress-test
-b0da78d6b9eb8942c314df020f9a2594b4cc4f480e939fef6f35ce75f3243770
-lab1r1s12% sleep 10 && docker logs wordpress-test 
-exec /init.sh: exec format error
-lab1r1s12% 
