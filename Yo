@@ -1,0 +1,9 @@
+mkdir -p ~/inception/srcs/requirements/mariadb/conf
+mkdir -p ~/inception/srcs/requirements/mariadb/tools
+mkdir -p ~/inception/srcs/requirements/nginx/conf
+mkdir -p ~/inception/srcs/requirements/nginx/tools
+mkdir -p ~/inception/srcs/requirements/wordpress/conf
+mkdir -p ~/inception/srcs/requirements/wordpress/tools
+touch ~/inception/srcs/docker-compose.yml
+touch ~/inception/srcs/.env
+touch ~/inception/Makefile
