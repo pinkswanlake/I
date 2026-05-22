@@ -1,6 +1,17 @@
-docker run -d --name mariadb-test \
-  -e MYSQL_DATABASE=wordpress \
-  -e MYSQL_USER=wpuser \
-  -e MYSQL_PASSWORD=wppassword123 \
-  -e MYSQL_ROOT_PASSWORD=rootpassword123 \
-  mariadb-test
+root@e42e8ebb5cd9:/# mysql -u wpuser -pwppassword123 wordpress
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 10.5.29-MariaDB-0+deb11u1 Debian 11
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [wordpress]> SHOW DATABASES:
+    -> EXIT
+    -> exit
+    -> ^C
+Exit
+Exit
+    -> 
+
