@@ -1,11 +1,19 @@
-lab1r1s12% docker run -d --name mariadb-test \
-  -e MYSQL_DATABASE=wordpress \
-  -e MYSQL_USER=wpuser \
-  -e MYSQL_PASSWORD=wppassword123 \
-  -e MYSQL_ROOT_PASSWORD=rootpassword123 \
-  mariadb-test
-5212fef3ffbb1dd7a5b4c4d87758423c4d28108859be1729caf2ce7c0f88552a
-lab1r1s12% sleep 5 && docker exec -it mariadb-test bash
-root@5212fef3ffbb:/# mysql -u wpuser -pwppassword123 wordpress
-ERROR 1045 (28000): Access denied for user 'wpuser'@'localhost' (using password: YES)
-root@5212fef3ffbb:/# 
+#!/bin/bash
+set -e
+
+mkdir -p /run/mysqld
+chown -R mysql:mysql /run/mysqld
+
+mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
+
+mysqld --user=mysql --bootstrap << EOF
+USE mysql;
+FLUSH PRIVILEGES;
+CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
+CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+FLUSH PRIVILEGES;
+EOF
+
+exec mysqld --user=mysql
