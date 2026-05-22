@@ -1,12 +1,3 @@
-Now the most important file — the entrypoint script:
-
-```bash
-nano ~/inception/srcs/requirements/mariadb/tools/init.sh
-```
-
-Type this inside:
-
-```bash
 #!/bin/bash
 set -e
 
@@ -27,8 +18,3 @@ EOF
 fi
 
 exec mysqld --user=mysql
-```
-
-Save with **Ctrl + X**, **Y**, **Enter**.
-
-Tell me when done!
