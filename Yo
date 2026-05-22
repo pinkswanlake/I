@@ -1,7 +1,4 @@
-docker run -d --name mariadb-test \
-  --network inception-net \
-  -e MYSQL_DATABASE=wordpress \
-  -e MYSQL_USER=wpuser \
-  -e MYSQL_PASSWORD=wppassword123 \
-  -e MYSQL_ROOT_PASSWORD=rootpassword123 \
-  mariadbtest
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+mariadbtest:latest      314f09279024        610MB          120MB        
+wordpress-test:latest   6f04cda2de8c        405MB          104MB        
+lab1r1s12% 
