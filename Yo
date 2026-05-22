@@ -1,29 +1,32 @@
-#!/bin/bash
-set -e
+Run 'docker --help' for more information
+lab1r1s12% docker build -t wordpress-test 
+ERROR: docker: 'docker buildx build' requires 1 argument
 
-mkdir -p /var/www/html
-cd /var/www/html
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
 
-if [ ! -f wp-config.php ]; then
-    wp core download --allow-root
+Run 'docker buildx build --help' for more information
+lab1r1s12% docker build -t wordpress-test .
+[+] Building 26.0s (10/10) FINISHED                                                                      docker:rootless
+ => [internal] load build definition from Dockerfile                                                                0.0s
+ => => transferring dockerfile: 565B                                                                                0.0s
+ => [internal] load metadata for docker.io/library/debian:bullseye                                                  1.4s
+ => [internal] load .dockerignore                                                                                   0.0s
+ => => transferring context: 2B                                                                                     0.0s
+ => CACHED [1/5] FROM docker.io/library/debian:bullseye@sha256:aeec37aebc55ca5cc6fcfb8d5f6ae2fd43d5017ad849e6e2fdb  0.0s
+ => => resolve docker.io/library/debian:bullseye@sha256:aeec37aebc55ca5cc6fcfb8d5f6ae2fd43d5017ad849e6e2fdb5325d61  0.0s
+ => [internal] load build context                                                                                   0.0s
+ => => transferring context: 761B                                                                                   0.0s
+ => [2/5] RUN apt-get update && apt-get install -y     php7.4     php7.4-fpm     php7.4-mysql     php7.4-curl      19.9s
+ => [3/5] RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar     && chmod +x wp-cl  1.0s 
+ => [4/5] COPY tools/init.sh /init.sh                                                                               0.0s 
+ => [5/5] RUN chmod +x /init.sh                                                                                     0.1s 
+ => exporting to image                                                                                              3.4s 
+ => => exporting layers                                                                                             2.5s 
+ => => exporting manifest sha256:24c2565589f54a308845628733fc0251fd28f3b7593e17e81f411bec91c0821f                   0.0s 
+ => => exporting config sha256:cf5d1076f310ffab713ff333581b376962e05cfd52bf0c29407145df33429918                     0.0s 
+ => => exporting attestation manifest sha256:677bc46ab71746c3ac7014f743d83c889f268d28d6398bd96bfd04c467d5c21f       0.0s
+ => => exporting manifest list sha256:6f04cda2de8c3f9de44153189174984ddb2ab864283b93cf47de937c6aadec86              0.0s
+ => => naming to docker.io/library/wordpress-test:latest                                                            0.0s
+ => => unpacking to docker.io/library/wordpress-test:latest                                                         0.9s
+lab1r1s12% 
 
-    wp config create --allow-root \
-        --dbname=${MYSQL_DATABASE} \
-        --dbuser=${MYSQL_USER} \
-        --dbpass=${MYSQL_PASSWORD} \
-        --dbhost=mariadb:3306
-
-    wp core install --allow-root \
-        --url=https://${DOMAIN_NAME} \
-        --title="Inception" \
-        --admin_user=${WP_ADMIN} \
-        --admin_password=${WP_ADMIN_PASSWORD} \
-        --admin_email=${WP_ADMIN_EMAIL}
-
-    wp user create --allow-root \
-        ${WP_USER} ${WP_USER_EMAIL} \
-        --role=author \
-        --user_pass=${WP_USER_PASSWORD}
-fi
-
-exec php-fpm7.4 -F
