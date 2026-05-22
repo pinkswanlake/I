@@ -1,0 +1,73 @@
+
+Day 1
+Docker fundamentals only
+no project yet
+▾
+Install Docker on your VM. Don't skip the VM setup — Inception must run inside one.
+Learn what an image, container, and Dockerfile are. Run hello-world and ubuntu containers.
+Write a simple Dockerfile that installs nginx on Alpine. Build it, run it, kill it.
+Learn docker exec, docker logs, docker ps, docker rm. These will be your best friends.
+Watch one short YouTube intro to Docker Compose (15–20 min max). Just understand the concept.
+⚠ Don't touch the Inception project files yet. A shaky Docker foundation will cost you 2 days later.
+
+Day 2
+MariaDB container
+first service
+▾
+Read the Inception subject carefully. Highlight every requirement — there are many small rules.
+Set up your project folder structure: srcs/, Makefile, docker-compose.yml, .env file.
+Write a Dockerfile for MariaDB using Debian or Alpine (penultimate stable version only — check which).
+Write an entrypoint script that initialises the database, creates a user, and sets a password.
+Test it in isolation: docker build, docker run, docker exec in and run mysql -u root. Confirm it works alone.
+💡 Use environment variables via .env for ALL passwords and usernames. Never hardcode them.
+
+Ha, I wish I could! But unfortunately I can't — here's the reality:
+
+**The cluster/VM wall:** Inception must run inside a virtual machine on your 42 school computer. I can't access your school's machines, your VM, or your local filesystem.
+
+**What I *can* do is basically be your co-pilot:**
+
+- Review your Dockerfiles line by line and spot mistakes
+- Write or fix your NGINX config, entrypoint scripts, docker-compose.yml
+- Debug errors when you paste your logs or error messages
+- Explain *why* something isn't working
+- Write your Makefile
+- Help you configure WordPress + WP-CLI automation
+- Check your TLS setup
+- Walk you through any concept you're stuck on
+
+Essentially — you run the commands, I fix the code. That's actually a pretty fast workflow, and you'll learn enough to survive the evaluation too.
+
+**The best way to use me:** whenever you hit an error, paste the error message + the relevant file and I'll tell you exactly what to fix.
+
+Ready to start with Day 1 — getting Docker set up on your VM?
+
+
+
+
+Day 1 — Docker fundamentals
+5 steps. No project code yet — just learning Docker hands-on.
+
+0 of 5 done
+1
+Set up your VM
+~30 min
+▾
+Inception must run inside a virtual machine — not directly on the school computer. At 42 you typically use VirtualBox with a Linux distro (Debian is recommended). If your VM is already set up from Born2beroot, you can reuse it.
+
+CHECK IF DOCKER IS ALREADY INSTALLED
+docker --version
+Copy
+IF NOT INSTALLED — INSTALL DOCKER ON DEBIAN/UBUNTU
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+Copy
+ADD YOURSELF TO THE DOCKER GROUP (SO YOU DON'T NEED SUDO EVERY TIME)
+sudo usermod -aG docker $USER
+newgrp docker
+Copy
+Run: docker --version. You should see something like 'Docker version 24.x.x'. If yes, move on.
+At 42 school, check if Docker is already available in your cluster session before installing — it often is.
+
