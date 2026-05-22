@@ -1,52 +1,8 @@
-lab1r1s12% sleep 5 && docker run -d --name wordpress-test \
-  --network inception-net \
-  -e MYSQL_DATABASE=wordpress \
-  -e MYSQL_USER=wpuser \
-  -e MYSQL_PASSWORD=wppassword123 \
-  -e DOMAIN_NAME=asmafrid.42.fr \
-  -e WP_ADMIN=admin \
-  -e WP_ADMIN_PASSWORD=adminpass123 \
-  -e WP_ADMIN_EMAIL=admin@asmafrid.42.fr \
-  -e WP_USER=user1 \
-  -e WP_USER_PASSWORD=userpass123 \
-  -e WP_USER_EMAIL=user1@asmafrid.42.fr \
-  wordpress-test
-b0da78d6b9eb8942c314df020f9a2594b4cc4f480e939fef6f35ce75f3243770
-lab1r1s12% sleep 10 && docker logs wordpress-test 
-exec /init.sh: exec format error
-lab1r1s12% nano ~/inception/srcs/requirements/wordpress/tools/init.sh 
-lab1r1s12% nano ~/inception/srcs/requirements/wordpress/tools/init.sh
-lab1r1s12% y
-zsh: command not found: y
-lab1r1s12% cd ~/inception/srcs/requirements/wordpress 
-lab1r1s12% docker build -t wordpress-test .
-[+] Building 1.9s (10/10) FINISHED                                                                       docker:rootless
- => [internal] load build definition from Dockerfile                                                                0.0s
- => => transferring dockerfile: 565B                                                                                0.0s
- => [internal] load metadata for docker.io/library/debian:bullseye                                                  1.5s
- => [internal] load .dockerignore                                                                                   0.0s
- => => transferring context: 2B                                                                                     0.0s
- => [1/5] FROM docker.io/library/debian:bullseye@sha256:aeec37aebc55ca5cc6fcfb8d5f6ae2fd43d5017ad849e6e2fdb5325d61  0.0s
- => => resolve docker.io/library/debian:bullseye@sha256:aeec37aebc55ca5cc6fcfb8d5f6ae2fd43d5017ad849e6e2fdb5325d61  0.0s
- => [internal] load build context                                                                                   0.0s
- => => transferring context: 760B                                                                                   0.0s
- => CACHED [2/5] RUN apt-get update && apt-get install -y     php7.4     php7.4-fpm     php7.4-mysql     php7.4-cu  0.0s
- => CACHED [3/5] RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar     && chmod +  0.0s
- => [4/5] COPY tools/init.sh /init.sh                                                                               0.0s
- => [5/5] RUN chmod +x /init.sh                                                                                     0.2s
- => exporting to image                                                                                              0.1s
- => => exporting layers                                                                                             0.1s
- => => exporting manifest sha256:4a9d1a44b8c596cca6a8093a41eab6ed073b3b6691fe9fe8d5b16d175e77ef4a                   0.0s
- => => exporting config sha256:945ebf23775ec0f91bc7d6c14ebcc08d2fefee615ecf6ab92bddb30712a3d8a7                     0.0s
- => => exporting attestation manifest sha256:8ef7999a1c7a3aae8fae3113137d6511448fc2bb021c60f8390ddd968cb57891       0.0s
- => => exporting manifest list sha256:bd3308ad47fdf3e6a48afc585dff7fac3ea4d3c2f458b80c88d1fcb09defc737              0.0s
- => => naming to docker.io/library/wordpress-test:latest                                                            0.0s
- => => unpacking to docker.io/library/wordpress-test:latest                                                         0.0s
-lab1r1s12% docker run -d --name mariadb-test \
-  --network inception-net \
-  -e MYSQL_DATABASE=wordpress \
-  -e MYSQL_USER=wpuser \
-  -e MYSQL_PASSWORD=wppassword123 \
-  -e MYSQL_ROOT_PASSWORD=rootpassword123 \
-  mariadbtest
-
+28443c0598cfd768de2ede43b787445358db309a909b4663f92df80f0120e499
+lab1r1s12% sleep 10 && docker logs wordpress-test
+Downloading WordPress 7.0 (en_US)...
+md5 hash verified: 3f931837b01ce4ef308de24fa802f014
+Success: WordPress downloaded.
+PHP Warning:  mysqli_real_connect(): php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution in phar:///usr/local/bin/wp/vendor/wp-cli/config-command/src/Config_Command.php on line 234
+Error: Database connection error (2002) php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+lab1r1s12% 
