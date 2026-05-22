@@ -1,5 +1,26 @@
-28443c0598cfd768de2ede43b787445358db309a909b4663f92df80f0120e499
-lab1r1s12% sleep 10 && docker logs wordpress-test
+lab1r1s12% docker run -d --name mariadb-test \             
+  --network inception-net \
+  -e MYSQL_DATABASE=wordpress \
+  -e MYSQL_USER=wpuser \
+  -e MYSQL_PASSWORD=wppassword123 \
+  -e MYSQL_ROOT_PASSWORD=rootpassword123 \
+  mariadbtest        
+2560653f46929d1317d2cc549d55c126a7a2f463f2733a20fdc8702ef10efb6e
+lab1r1s12% sleep 5 && docker run -d --name wordpress-test \
+  --network inception-net \
+  -e MYSQL_DATABASE=wordpress \
+  -e MYSQL_USER=wpuser \
+  -e MYSQL_PASSWORD=wppassword123 \
+  -e DOMAIN_NAME=asmafrid.42.fr \
+  -e WP_ADMIN=admin \
+  -e WP_ADMIN_PASSWORD=adminpass123 \
+  -e WP_ADMIN_EMAIL=admin@asmafrid.42.fr \
+  -e WP_USER=user1 \
+  -e WP_USER_PASSWORD=userpass123 \
+  -e WP_USER_EMAIL=user1@asmafrid.42.fr \
+  wordpress-test
+0149e1735bb46818dc0ea41009798a2b5291690bac06a74877d504d5f61a5049
+lab1r1s12% sleep 15 && docker logs wordpress-test 
 Downloading WordPress 7.0 (en_US)...
 md5 hash verified: 3f931837b01ce4ef308de24fa802f014
 Success: WordPress downloaded.
