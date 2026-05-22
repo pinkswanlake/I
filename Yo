@@ -1,26 +1,29 @@
-FROM debian:bullseye
+#!/bin/bash
+set -e
 
-RUN apt-get update && apt-get install -y \
-    php7.4 \
-    php7.4-fpm \
-    php7.4-mysql \
-    php7.4-curl \
-    php7.4-gd \
-    php7.4-mbstring \
-    php7.4-xml \
-    php7.4-xmlrpc \
-    php7.4-zip \
-    wget \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+mkdir -p /var/www/html
+cd /var/www/html
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-    && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp
+if [ ! -f wp-config.php ]; then
+    wp core download --allow-root
 
-COPY tools/init.sh /init.sh
-RUN chmod +x /init.sh
+    wp config create --allow-root \
+        --dbname=${MYSQL_DATABASE} \
+        --dbuser=${MYSQL_USER} \
+        --dbpass=${MYSQL_PASSWORD} \
+        --dbhost=mariadb:3306
 
-EXPOSE 9000
+    wp core install --allow-root \
+        --url=https://${DOMAIN_NAME} \
+        --title="Inception" \
+        --admin_user=${WP_ADMIN} \
+        --admin_password=${WP_ADMIN_PASSWORD} \
+        --admin_email=${WP_ADMIN_EMAIL}
 
-ENTRYPOINT ["/init.sh"]
+    wp user create --allow-root \
+        ${WP_USER} ${WP_USER_EMAIL} \
+        --role=author \
+        --user_pass=${WP_USER_PASSWORD}
+fi
+
+exec php-fpm7.4 -F
