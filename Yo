@@ -1,3 +1,23 @@
+lab1r1s12% sleep 5 && docker run -d --name wordpress-test \
+  --network inception-net \
+  -e MYSQL_DATABASE=wordpress \
+  -e MYSQL_USER=wpuser \
+  -e MYSQL_PASSWORD=wppassword123 \
+  -e DOMAIN_NAME=asmafrid.42.fr \
+  -e WP_ADMIN=admin \
+  -e WP_ADMIN_PASSWORD=adminpass123 \
+  -e WP_ADMIN_EMAIL=admin@asmafrid.42.fr \
+  -e WP_USER=user1 \
+  -e WP_USER_PASSWORD=userpass123 \
+  -e WP_USER_EMAIL=user1@asmafrid.42.fr \
+  wordpress-test
+b0da78d6b9eb8942c314df020f9a2594b4cc4f480e939fef6f35ce75f3243770
+lab1r1s12% sleep 10 && docker logs wordpress-test 
+exec /init.sh: exec format error
+lab1r1s12% nano ~/inception/srcs/requirements/wordpress/tools/init.sh 
+lab1r1s12% nano ~/inception/srcs/requirements/wordpress/tools/init.sh
+lab1r1s12% y
+zsh: command not found: y
 lab1r1s12% cd ~/inception/srcs/requirements/wordpress 
 lab1r1s12% docker build -t wordpress-test .
 [+] Building 1.9s (10/10) FINISHED                                                                       docker:rootless
@@ -29,7 +49,4 @@ lab1r1s12% docker run -d --name mariadb-test \
   -e MYSQL_PASSWORD=wppassword123 \
   -e MYSQL_ROOT_PASSWORD=rootpassword123 \
   mariadbtest
-docker: Error response from daemon: Conflict. The container name "/mariadb-test" is already in use by container "13169dec7ebf75f45ebd342ea9b3b9efbd43846165f79b5f99fec9182981a60c". You have to remove (or rename) that container to be able to reuse that name.
 
-Run 'docker run --help' for more information
-lab1r1s12% 
