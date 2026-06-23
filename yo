@@ -1,1 +1,8 @@
-wget -P /sgoinfre/asmafrid/ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.10.0-amd64-netinst.iso
+lab3r1s5% wget -P /sgoinfre/asmafrid/ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.11.0-amd64-netinst.iso
+--2026-06-23 16:59:19--  https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.11.0-amd64-netinst.iso
+Resolving cdimage.debian.org (cdimage.debian.org)... 194.71.11.173, 194.71.11.165, 194.71.11.163, ...
+Connecting to cdimage.debian.org (cdimage.debian.org)|194.71.11.173|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2026-06-23 16:59:20 ERROR 404: Not Found.
+
+lab3r1s5% 
