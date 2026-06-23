@@ -1,19 +1,17 @@
-lab3r1s5% cat ~/Desktop/inception/srcs/.env 
-DOMAIN_NAME=asmafrid.42.fr
+nano ~/Desktop/inception/srcs/requirements/nginx/Dockerfile
 
-MYSQL_ROOT_PASSWORD=rootpassword123
-MYSQL_DATABASE=wordpress
-MYSQL_USER=wpuser
-MYSQL_PASSWORD=wppassword123
+FROM debian:bullseye
 
-WP_ADMIN=admin
-WP_ADMIN_PASSWORD=adminpass123
-WP_ADMIN_EMAIL=admin@asmafrid.42.fr
-WP_USER=user1
-WP_USER_PASSWORD=userpass123
-WP_USER_EMAIL=user1@asmafrid.42.fr
-lab3r1s5% cat ~/Desktop/inception/srcs/docker-compose.yml 
-lab3r1s5% cat ~/Desktop/inception/srcs/docker-compose.yml
-lab3r1s5% cat ~/Desktop/inception/Makefile 
-lab3r1s5% 
+RUN apt-get update && apt-get install -y \
+    nginx \
+    openssl \
+    && rm -rf /var/lib/apt/lists/*
 
+COPY conf/nginx.conf /etc/nginx/sites-available/default
+
+COPY tools/init.sh /init.sh
+RUN chmod +x /init.sh
+
+EXPOSE 443
+
+ENTRYPOINT ["/init.sh"]
