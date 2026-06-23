@@ -1,17 +1,121 @@
-nano ~/Desktop/inception/srcs/requirements/nginx/Dockerfile
+Now the NGINX init.sh:
+bashnano ~/Desktop/inception/srcs/requirements/nginx/tools/init.sh
+Type this inside:
+bash#!/bin/bash
+set -e
 
-FROM debian:bullseye
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/ssl/private/nginx.key \
+    -out /etc/ssl/certs/nginx.crt \
+    -subj "/C=AE/ST=Abu Dhabi/L=Abu Dhabi/O=42/CN=asmafrid.42.fr"
 
-RUN apt-get update && apt-get install -y \
-    nginx \
-    openssl \
-    && rm -rf /var/lib/apt/lists/*
+exec nginx -g "daemon off;"
+Save with Ctrl+X, Y, Enter. Tell me when done!You said: DoneDone4:35 PMClaude responded: Now the NGINX config file:Now the NGINX config file:
+bashnano ~/Desktop/inception/srcs/requirements/nginx/conf/nginx.conf
+Type this inside:
+nginxserver {
+    listen 443 ssl;
+    server_name asmafrid.42.fr;
 
-COPY conf/nginx.conf /etc/nginx/sites-available/default
+    ssl_certificate /etc/ssl/certs/nginx.crt;
+    ssl_certificate_key /etc/ssl/private/nginx.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
 
-COPY tools/init.sh /init.sh
-RUN chmod +x /init.sh
+    root /var/www/html;
+    index index.php;
 
-EXPOSE 443
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
 
-ENTRYPOINT ["/init.sh"]
+    location ~ \.php$ {
+        fastcgi_pass wordpress:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+Save with Ctrl+X, Y, Enter. Tell me when done!You said: DoneDone4:35 PMClaude responded: Now the docker-compose.Now the docker-compose.yml:
+bashnano ~/Desktop/inception/srcs/docker-compose.yml
+Type this inside:
+yamlservices:
+  mariadb:
+    build: requirements/mariadb
+    container_name: mariadb
+    env_file: .env
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
+    restart: always
+
+  wordpress:
+    build: requirements/wordpress
+    container_name: wordpress
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    depends_on:
+      - mariadb
+    restart: always
+
+  nginx:
+    build: requirements/nginx
+    container_name: nginx
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/html
+    ports:
+      - "443:443"
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+    restart: always
+
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/asmafrid/data/mariadb
+
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/asmafrid/data/wordpress
+
+networks:
+  inception:
+    driver: bridge
+Save with Ctrl+X, Y, Enter. Tell me when done!You said: DoneDone4:35 PMClaude responded: Now the Makefile:Now the Makefile:
+bashnano ~/Desktop/inception/Makefile
+Type this inside:
+makefileall:
+	mkdir -p /home/asmafrid/data/mariadb
+	mkdir -p /home/asmafrid/data/wordpress
+	docker compose -f srcs/docker-compose.yml up -d --build
+
+down:
+	docker compose -f srcs/docker-compose.yml down
+
+clean:
+	docker compose -f srcs/docker-compose.yml down -v
+	docker system prune -f
+
+fclean: clean
+	rm -rf /home/asmafrid/data/mariadb
+	rm -rf /home/asmafrid/data/wordpress
+
+re: fclean all
+
+.PHONY: all down clean fclean re
+Important: the indentation in a Makefile must be a TAB not spaces. Nano should handle this automatically but make sure when you type the indented lines you press the Tab key not spacebar.
+Save with Ctrl+X, Y, Enter. Tell me when done!You said: DoneDone4:35 PMClaude responded: Now add your domain to the hosts file:Now add your domain to the hosts file:
+bashecho "127.0.0.1 asmafrid.42.fr" | sudo tee -a /etc/hosts
+It will ask for your password. If you get a sudoers error like before, tell me and we'll fix it. Otherwise tell me what it says!
