@@ -1,28 +1,19 @@
-lab3r1s5% cat ~/Desktop/inception/srcs/requirements/wordpress/Dockerfile 
-FROM debian:bullseye
+lab3r1s5% cat ~/Desktop/inception/srcs/.env 
+DOMAIN_NAME=asmafrid.42.fr
 
-RUN apt-get update && apt-get install -y \
-    php7.4 \
-    php7.4-fpm \
-    php7.4-mysql \
-    php7.4-curl \
-    php7.4-gd \
-    php7.4-mbstring \
-    php7.4-xml \
-    php7.4-xmlrpc \
-    php7.4-zip \
-    wget \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+MYSQL_ROOT_PASSWORD=rootpassword123
+MYSQL_DATABASE=wordpress
+MYSQL_USER=wpuser
+MYSQL_PASSWORD=wppassword123
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-    && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp
-
-COPY tools/init.sh /init.sh
-RUN chmod +x /init.sh
-
-EXPOSE 9000
-
-ENTRYPOINT ["/init.sh"]
+WP_ADMIN=admin
+WP_ADMIN_PASSWORD=adminpass123
+WP_ADMIN_EMAIL=admin@asmafrid.42.fr
+WP_USER=user1
+WP_USER_PASSWORD=userpass123
+WP_USER_EMAIL=user1@asmafrid.42.fr
+lab3r1s5% cat ~/Desktop/inception/srcs/docker-compose.yml 
+lab3r1s5% cat ~/Desktop/inception/srcs/docker-compose.yml
+lab3r1s5% cat ~/Desktop/inception/Makefile 
 lab3r1s5% 
+
