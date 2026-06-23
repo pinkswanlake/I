@@ -1,9 +1,22 @@
-mkdir -p ~/inception/srcs/requirements/mariadb/conf
-mkdir -p ~/inception/srcs/requirements/mariadb/tools
-mkdir -p ~/inception/srcs/requirements/nginx/conf
-mkdir -p ~/inception/srcs/requirements/nginx/tools
-mkdir -p ~/inception/srcs/requirements/wordpress/conf
-mkdir -p ~/inception/srcs/requirements/wordpress/tools
-touch ~/inception/srcs/docker-compose.yml
-touch ~/inception/srcs/.env
-touch ~/inception/Makefile
+lab3r1s5% find ~/Desktop/inception | sort
+/home/asmafrid/Desktop/inception
+/home/asmafrid/Desktop/inception/Makefile
+/home/asmafrid/Desktop/inception/srcs
+/home/asmafrid/Desktop/inception/srcs/docker-compose.yml
+/home/asmafrid/Desktop/inception/srcs/.env
+/home/asmafrid/Desktop/inception/srcs/requirements
+/home/asmafrid/Desktop/inception/srcs/requirements/mariadb
+/home/asmafrid/Desktop/inception/srcs/requirements/mariadb/conf
+/home/asmafrid/Desktop/inception/srcs/requirements/mariadb/conf/my.cnf
+/home/asmafrid/Desktop/inception/srcs/requirements/mariadb/Dockerfile
+/home/asmafrid/Desktop/inception/srcs/requirements/mariadb/tools
+/home/asmafrid/Desktop/inception/srcs/requirements/mariadb/tools/init.sh
+/home/asmafrid/Desktop/inception/srcs/requirements/nginx
+/home/asmafrid/Desktop/inception/srcs/requirements/nginx/conf
+/home/asmafrid/Desktop/inception/srcs/requirements/nginx/tools
+/home/asmafrid/Desktop/inception/srcs/requirements/wordpress
+/home/asmafrid/Desktop/inception/srcs/requirements/wordpress/conf
+/home/asmafrid/Desktop/inception/srcs/requirements/wordpress/Dockerfile
+/home/asmafrid/Desktop/inception/srcs/requirements/wordpress/tools
+/home/asmafrid/Desktop/inception/srcs/requirements/wordpress/tools/init.sh
+lab3r1s5% 
