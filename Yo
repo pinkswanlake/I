@@ -1,4 +1,45 @@
-sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
-
-
-grep sed /home/asmafrid/inception/srcs/requirements/wordpress/tools/init.sh
+asmafrid@asmafrid:~/inception$ sleep 40 && docker logs wordpress | tail -20
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: unknown command: `�'
+/init.sh: line 30: listen: command not found
+/init.sh: line 30: $'\302\264': command not found
+/init.sh: line 30: listen: command not found
+sed: -e expression #1, char 1: 
