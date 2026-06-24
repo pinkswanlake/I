@@ -1,9 +1,10 @@
-!/bin/bash
-set -e
-
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -keyout /etc/ssl/private/nginx.key \
-    -out /etc/ssl/certs/nginx.crt \
-    -subj "/C=AE/ST=Abu Dhabi/L=Abu Dhabi/O=42/CN=asmafrid.42.fr"
-
-exec nginx -g "daemon off;"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   157  100   157    0     0  38060      0 --:--:-- --:--:-- --:--:-- 39250
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.18.0</center>
+</body>
+</html>
