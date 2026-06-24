@@ -1,11 +1,9 @@
-DOMAIN_NAME=asmafrid.42.fr
-MYSQL_ROOT_PASSWORD=rootpassword123
-MYSQL_DATABASE=wordpress
-MYSQL_USER=wpuser
-MYSQL_PASSWORD=wppassword123
-WP_ADMIN=admin
-WP_ADMIN_PASSWORD=adminpass123
-WP_ADMIN_EMAIL=admin@asmafrid.42.fr
-WP_USER=user1
-WP_USER_PASSWORD=userpass123
-WP_USER_EMAIL=user1@asmafrid.42.fr
+127.0.0.1	localhost
+127.0.1.1	asmafrid
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+127.0.0.1 asmafrid.42.fr
