@@ -1,9 +1,64 @@
-asmafrid@asmafrid:~/inception$ startx
-xauth:  file /home/asmafrid/.Xauthority does not exist
-
-/usr/lib/xorg/Xorg.wrap: Only console users are allowed to run the X server
-xinit: giving up
-xinit: unable to connect to X server: Connection refused
-xinit: server error
-Couldn't get a file descriptor referring to the console.
+asmafrid@asmafrid:~/inception$ docker ps
+CONTAINER ID   IMAGE            COMMAND      CREATED       STATUS          PORTS                                   NAMES
+b8cbecdbf118   srcs_nginx       "/init.sh"   2 weeks ago   Up 36 minutes   0.0.0.0:443->443/tcp, :::443->443/tcp   nginx
+dd4963c8a928   srcs_wordpress   "/init.sh"   2 weeks ago   Up 36 minutes   9000/tcp                                wordpress
+32ab53804353   srcs_mariadb     "/init.sh"   2 weeks ago   Up 36 minutes   3306/tcp                                mariadb
+asmafrid@asmafrid:~/inception$ curl -k https://asmafrid.42.fr | grep -i title
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<title>Inception</title>
+<link rel="alternate" type="application/rss+xml" title="Inception &raquo; Feed" href="https://asmafrid.42.fr/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="Inception &raquo; Comments Feed" href="https://asmafrid.42.fr/?feed=comments-rss2" />
+<style id="wp-block-site-title-inline-css">
+.wp-block-site-title{box-sizing:border-box}.wp-block-site-title :where(a){color:inherit;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;text-decoration:inherit}
+/*# sourceURL=https://asmafrid.42.fr/wp-includes/blocks/site-title/style.min.css */
+<style id="wp-block-post-title-inline-css">
+.wp-block-post-title{box-sizing:border-box;word-break:break-word}.wp-block-post-title :where(a){display:inline-block;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;text-decoration:inherit}
+/*# sourceURL=https://asmafrid.42.fr/wp-includes/blocks/post-title/style.min.css */
+:root :where(.wp-block-post-title a:where(:not(.wp-element-button))){text-decoration: none;}
+:root :where(.wp-block-post-title a:where(:not(.wp-element-button)):hover){text-decoration: underline;}
+:root :where(.wp-block-site-title){font-weight: 700;letter-spacing: -.5px;}
+:root :where(.wp-block-site-title a:where(:not(.wp-element-button))){text-decoration: none;}
+:root :where(.wp-block-site-title a:where(:not(.wp-element-button)):hover){text-decoration: underline;}
+<link rel="https://api.w.org/" href="https://asmafrid.42.fr/index.php?rest_route=/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://asmafrid.42.fr/xmlrpc.php?rsd" />
+			<p class="wp-block-site-title"><a href="https://asmafrid.42.fr" target="_self" rel="home" aria-current="page">Inception</a></p>
+			<h2 class="wp-block-post-title has-x-large-font-size"><a href="https://asmafrid.42.fr/?p=1" target="_self" >Hello world!</a></h2>
+				<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%"><h2 class="wp-block-site-title"><a href="https://asmafrid.42.fr" target="_self" rel="home" aria-current="page">Inception</a></h2>
+100 68380    0 68380    0     0   776k      0 --:--:-- --:--:-- --:--:--  785k
+asmafrid@asmafrid:~/inception$ curl -k https://asmafrid.42.fr/wp-login.php | grep -i "title\|login"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0	<title>Log In &lsaquo; Inception &#8212; WordPress</title>
+<link rel='stylesheet' href='https://asmafrid.42.fr/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5Bchunk_0%5D=dashicons,buttons,forms,l10n,wp-base-styles,login&amp;ver=7.0' media='all' />
+	<body class="login no-js login-action-login wp-core-ui admin-color-modern locale-en-us">
+			<div id="login">
+		<h1 role="presentation" class="wp-login-logo"><a href="https://wordpress.org/">Powered by WordPress</a></h1>
+		<form name="loginform" id="loginform" action="https://asmafrid.42.fr/wp-login.php" method="post">
+				<label for="user_login">Username or Email Address</label>
+				<input type="text" name="log" id="user_login" class="input ltr" value="" size="20" autocapitalize="off" autocomplete="username" required="required" />
+				<a class="wp-login-lost-password" href="https://asmafrid.42.fr/wp-login.php?action=lostpassword">Lost your password?</a>			</p>
+function wp_attempt_focus() {setTimeout( function() {try {d = document.getElementById( "user_login" );d.focus(); d.select();} catch( er ) {}}, 200);}
+100  4667    0  4667    0     0  74582      0 --:--:-- --:--:-- --:--:-- 75274
+asmafrid@asmafrid:~/inception$ docker exec mariadb mysql -u wpuser -pwppassword123 wordpress -e "SHOW TABLES;"
+Tables_in_wordpress
+wp_commentmeta
+wp_comments
+wp_links
+wp_options
+wp_postmeta
+wp_posts
+wp_term_relationships
+wp_term_taxonomy
+wp_termmeta
+wp_terms
+wp_usermeta
+wp_users
+asmafrid@asmafrid:~/inception$ cat /home/asmafrid/inception/srcs/.env | grep -v PASSWORD
+DOMAIN_NAME=asmafrid.42.fr
+MYSQL_DATABASE=wordpress
+MYSQL_USER=wpuser
+WP_ADMIN=asmafrid42
+WP_ADMIN_EMAIL=asmafrid42@asmafrid.42.fr
+WP_USER=user1
+WP_USER_EMAIL=user1@asmafrid.42.fr
 asmafrid@asmafrid:~/inception$ 
