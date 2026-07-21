@@ -1,6 +1,4 @@
-lab3r1s5% cd /home/asmafrid/inception
-cd: no such file or directory: /home/asmafrid/inception
-lab3r1s5% cd /home/asmafrid/inception
 lab3r1s5% git log --oneline
-fatal: not a git repository (or any parent up to mount point /home)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+9eaff7b (HEAD -> master, origin/master, origin/HEAD) ko
+06d9ab0 ko
+lab3r1s5% 
