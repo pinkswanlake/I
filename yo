@@ -1,4 +1,3 @@
-lab3r1s5% git log --oneline
-9eaff7b (HEAD -> master, origin/master, origin/HEAD) ko
-06d9ab0 ko
-lab3r1s5% 
+asmafrid@asmafrid:~/inception$ docker ps | grep nginx
+b8cbecdbf118   srcs_nginx       "/init.sh"   2 weeks ago   Up 44 minutes   0.0.0.0:443->443/tcp, :::443->443/tcp   nginx
+asmafrid@asmafrid:~/inception$ 
